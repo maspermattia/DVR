@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolatore DVR</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>CALCOLATORE DVR</h1>
+        <h2>Compila il form per calcolare l'indice di valutazione del rischio</h2>
+    </header>
+    <div class="container">
+        <form>
+            <table>
+                <tr>
+                    <th>Voce</th>
+                    <th>Dato</th>
+                </tr>
+                <tr>
+                    <td><label for="eta">Età</label></td>
+                    <td>
+                        <input type="radio" name="eta" id="maggiore18" value="0" data-text=">18" checked>
+                        <label for="maggiore18">>18  </label>
+                        <input type="radio" name="eta" id="tra15e18" value="1" data-text="15-18">
+                        <label for="tra15e18">15-18</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="sesso">Sesso</label></td>
+                    <td>
+                        <input type="radio" name="sesso" id="maschio" value="0" data-text="Maschio" checked>
+                        <label for="maschio"> Maschio</label>
+                        <input type="radio" name="sesso" id="femmina" value="1" data-text="Femmina">
+                        <label for="femmina"> Femmina</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="altezza">Altezza da terra delle mani all'inizio del sollevamento (cm)</label></td>
+                    <td>
+                        <select name="altezza" id="altezza">
+                            <option value="0">0</option>
+                            <option value="1">25</option>
+                            <option value="2">50</option>
+                            <option value="3">75</option>
+                            <option value="4">100</option>
+                            <option value="5">125</option>
+                            <option value="6">150</option>
+                            <option value="7">>175</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="dislocazione">Dislocazione verticale del peso fra inizio e fine del sollevamento (cm)</label></td>
+                    <td>
+                        <select name="dislocazione" id="dislocazione">
+                            <option value="0">25</option>
+                            <option value="1">30</option>
+                            <option value="2">40</option>
+                            <option value="3">50</option>
+                            <option value="4">70</option>
+                            <option value="5">100</option>
+                            <option value="6">170</option>
+                            <option value="7">>175</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="distanza">Distanza orizzontale tra le mani e il punto di mezzo delle caviglie (cm)</label></td>
+                    <td>
+                        <select name="distanza" id="distanza">
+                            <option value="0">25</option>
+                            <option value="1">30</option>
+                            <option value="2">40</option>
+                            <option value="3">50</option>
+                            <option value="4">55</option>
+                            <option value="5">60</option>
+                            <option value="6">>63</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="angolo">Angolo di asimmetria del peso (in gradi)</label></td>
+                    <td>
+                        <select name="angolo" id="angolo">
+                            <option value="0">0</option>
+                            <option value="1">30</option>
+                            <option value="2">60</option>
+                            <option value="3">90</option>
+                            <option value="4">120</option>
+                            <option value="5">135</option>
+                            <option value="6">>135</option>
+                        </select>
+                    </td>
+                </tr>
+                <!-- Altre righe della tabella -->
+                <tr>
+                    <td><label for="presa">Giudizio della presa sul carico</label></td>
+                    <td>
+                        <input type="radio" name="presa" id="Buono" value="0" data-text="Buono" checked>
+                        <label for="Buono"> Buono</label>
+                        <input type="radio" name="presa" id="Scarso" value="1" data-text="Scarso">
+                        <label for="Scarso"> Scarso</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="frequenza">Frequenza dei gesti (N. atti al minuto)</label></td>
+                    <td>
+                        <select name="frequenza" id="frequenza">
+                            <option value="0">0.20</option>
+                            <option value="1">1</option>
+                            <option value="2">4</option>
+                            <option value="3">6</option>
+                            <option value="4">9</option>
+                            <option value="5">12</option>
+                            <option value="6">>15</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="durata">Durata</label></td>
+                    <td>
+                        <input type="radio" name="durata" id="continuo1ora" value="0" data-text="CONTINUO (1 ora)" checked>
+                        <label for="continuo1ora"> CONTINUO (1 ora)</label>
+                        <input type="radio" name="durata" id="continuo1-2ore" value="1" data-text="CONTINUO (1-2 ore)">
+                        <label for="continuo1-2ore"> CONTINUO (1-2 ore)</label>
+                        <input type="radio" name="durata" id="continuo2-8ore" value="2" data-text="CONTINUO (2-8 ore)">
+                        <label for="continuo2-8ore"> CONTINUO (2-8 ore)</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="peso">Peso effettivamente sollevato (kg)</label></td>
+                    <td>
+                        <input type="number" name="peso" id="peso" min="0" value="0">
+                    </td>
+                </tr>
+            </table>
+            <input type="button" value="Calcola" onclick="calcola()">
+        </form>
+
+        <section id="risultato">
+            <h2>Risultato</h2>
+            <p id="risultato"></p>
+        </section>
+    </div>
+
+    <footer>
+        <button type="button" value="pdf" onclick="createPdf()" disabled="true" id="pdf">Crea PDF</button>
+    </footer>
+</body>
+</html>
