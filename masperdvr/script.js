@@ -89,7 +89,7 @@ function createPdf() {
     doc.setTextColor(255, 0, 0);
     doc.text(70, yPos, indiceRischio.toFixed(2));
     
-    doc.save('risultato.pdf');
+    doc.save('pdf.pdf');
 }
 
 
